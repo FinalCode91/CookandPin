@@ -1,0 +1,8 @@
+{
+  "name": "Cook & Pin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "3455661e"
+}
