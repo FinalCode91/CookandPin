@@ -1,0 +1,18 @@
+<resources>
+    <string name="appName">Cook &amp; Pin</string>
+    <string name="saying">Welcome to our digital cookbook where you can search, save and organize your favorite recipes!</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="recipe1_description">Pizza</string>
+    <string name="recipe2_description">Chocolate Cake</string>
+    <string name="recipe3_description">Potato Soup</string>
+    <string name="recipe4_description">Chicken Enchiladas</string>
+    <string name="recipe5_description">Chocolate Chip Cookies</string>
+    <string name="recipe6_description">Stir Fry</string>
+    <string name="recipe7_description">Cheesy Cauliflower Casserole</string>
+    <string name="recipe8_description">Pumpkin Pie</string>
+    <string name="recipe9_description">Meatballs</string>
+    <string name="textNotifications">We found a new recipe you might enjoy</string>
+    <string name="notification2">You added 2 new recipes to your cookbook</string>
+</resources>
