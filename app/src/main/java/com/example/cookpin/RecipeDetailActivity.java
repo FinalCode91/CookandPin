@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.util.Log;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -33,12 +34,18 @@ public class RecipeDetailActivity extends AppCompatActivity {
         String recipeInstructions = getIntent().getStringExtra("recipeInstructions");
 
         TextView titleTextView = findViewById(R.id.recipeTitleText);
-        TextView ingredientsTextView = findViewById(R.id.recipeIngredients);
-        TextView instructionsTextView = findViewById(R.id.recipeInstructions);
+        TextView ingredientsLabelTextView = findViewById(R.id.recipeIngredients);
+        TextView ingredientsListTextView = findViewById(R.id.recipeIngredientsList);
+        TextView instructionssLabelTextView = findViewById(R.id.recipeInstructions);
+        TextView instructionsListTextView = findViewById(R.id.recipeInstructionsList);
 
         titleTextView.setText(recipeTitle);
-        ingredientsTextView.setText(recipeIngredients);
-        instructionsTextView.setText(recipeInstructions);
+        ingredientsListTextView.setText(recipeIngredients);
+        instructionsListTextView.setText(recipeInstructions);
+
+        Log.d("RECIPE_DETAIL", "Title: " + recipeTitle);
+        Log.d("RECIPE_DETAIL", "Ingredients: " + recipeIngredients);
+        Log.d("RECIPE_DETAIL", "Instructions: " + recipeInstructions);
     }
 
     @Override

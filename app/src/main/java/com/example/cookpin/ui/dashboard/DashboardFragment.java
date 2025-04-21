@@ -48,7 +48,7 @@ public class DashboardFragment extends Fragment {
                 "Olive Oil, Red Bell Pepper, Yellow Bell Pepper, Sugar Snap Peas, Carrots, Mushrooms, Broccoli, Baby Corn, Water Chestnuts, Soy Sauce, Garlic Cloves, Brown Sugar, Sesame Oil, Chicken Broth, Cornstarch",
                 "In a wok, add 1 tbsp of olive oil over medium-high heat. Add in your vegetables and saute for about 2-3 minutes until veggies are tender. In a small bowl, whisk together your sauces, brown sugar and cornstarch. Pour over the veggies and cook until the sauce has thickened.");
         setupClick(binding.CheesyCauliflowerCasserole, "Cauliflower Casserole",
-                "Water, Cauliflower, Butter, Parmesean Cheese, Bread Crumbs, Salt, Red Pepper Flakes",
+                "Water, Cauliflower, Butter, Parmesan Cheese, Bread Crumbs, Salt, Red Pepper Flakes",
                 "Preheat oven to 350 degrees. Bring 2 inches of water to a boil in a saucepan. Add cauliflower, cover, and cook for about 10 minutes. In a small bowl, mix together butter, parmesean, bread crumbs, salt and red pepper flakes. Mix everything together and place into a baking dish. Bake for 20 minutes.");
         setupClick(binding.PumpkinPie, "Pumpkin Pie",
                 "1 Can of Pumpkin Puree, 1 Can of Sweetened Condensed Milk, 2 Large Eggs, 1 TBSP Pumpkin Pie Spice",
