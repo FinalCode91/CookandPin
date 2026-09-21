@@ -37,8 +37,6 @@
         <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@color/brand_brown</item>
         <item name="cornerRadius">@dimen/radius_small</item>
-        <item name="insetTop">0dp</item>
-        <item name="insetBottom">0dp</item>
     </style>
 
     <style name="Widget.CookPin.Button.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -49,8 +47,6 @@
         <item name="android:textColor">@color/brand_brown</item>
         <item name="strokeColor">@color/outline</item>
         <item name="cornerRadius">@dimen/radius_small</item>
-        <item name="insetTop">0dp</item>
-        <item name="insetBottom">0dp</item>
     </style>
 
     <style name="Widget.CookPin.Button.Tonal" parent="Widget.MaterialComponents.Button">
@@ -59,8 +55,6 @@
         <item name="android:textColor">@color/brand_brown_dark</item>
         <item name="backgroundTint">@color/surface_variant</item>
         <item name="cornerRadius">@dimen/radius_small</item>
-        <item name="insetTop">0dp</item>
-        <item name="insetBottom">0dp</item>
     </style>
 
     <style name="Widget.CookPin.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
