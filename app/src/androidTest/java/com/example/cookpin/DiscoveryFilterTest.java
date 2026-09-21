@@ -3,6 +3,7 @@ package com.example.cookpin;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
@@ -44,6 +45,7 @@ public class DiscoveryFilterTest {
         onView(withId(R.id.recipeSearch)).perform(replaceText("broccoli"));
         onView(withId(R.id.recipeResults)).check(matches(hasMinimumChildCount(2)));
         onView(withText(R.string.recipe6_description)).check(matches(isDisplayed()));
-        onView(withText("Vegetable Coconut Curry")).check(matches(isDisplayed()));
+        onView(withText("Vegetable Coconut Curry")).perform(scrollTo())
+                .check(matches(isDisplayed()));
     }
 }
