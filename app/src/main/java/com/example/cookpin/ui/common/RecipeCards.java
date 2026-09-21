@@ -30,7 +30,7 @@ public final class RecipeCards {
         LinearLayout body = new LinearLayout(context);
         body.setOrientation(LinearLayout.VERTICAL);
         ImageView image = new ImageView(context);
-        image.setImageResource(recipe.image);
+        image.setImageBitmap(RecipeImages.get(context.getResources(), recipe.image));
         image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         image.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         body.addView(image, new LinearLayout.LayoutParams(

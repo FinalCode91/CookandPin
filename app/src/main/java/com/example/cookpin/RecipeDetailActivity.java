@@ -13,6 +13,7 @@ import com.example.cookpin.data.PinnedRecipes;
 import com.example.cookpin.data.PortionPreferences;
 import com.example.cookpin.data.PortionScaler;
 import com.example.cookpin.data.RecipeCatalog;
+import com.example.cookpin.ui.common.RecipeImages;
 
 public class RecipeDetailActivity extends AppCompatActivity {
     @Override
@@ -48,7 +49,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         Button pin = findViewById(R.id.pinRecipe);
         View portionControls = findViewById(R.id.portionControls);
         if (recipe != null) {
-            photo.setImageResource(recipe.image);
+            photo.setImageBitmap(RecipeImages.get(getResources(), recipe.image));
             photo.setContentDescription(recipe.title);
             updatePinButton(pin, recipe.id);
             pin.setOnClickListener(v -> {

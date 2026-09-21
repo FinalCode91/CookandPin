@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import com.example.cookpin.R;
 import com.example.cookpin.data.PinnedRecipes;
@@ -41,6 +42,7 @@ public class NotificationsFragment extends Fragment {
             heading.setText(getString(R.string.shopping_recipe_heading, recipe.title,
                     PortionScaler.servings(recipe, PortionPreferences.get(requireContext(), recipe.id))));
             heading.setTextSize(20);
+            ViewCompat.setAccessibilityHeading(heading, true);
             heading.setPadding(0, 18, 0, 8);
             items.addView(heading);
             for (String ingredient : recipe.ingredients.split("\n")) {

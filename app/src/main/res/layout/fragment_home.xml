@@ -12,6 +12,7 @@
         android:inputType="text"
         android:singleLine="true" />
     <ScrollView
+        android:id="@+id/discoverScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
