@@ -1,9 +1,9 @@
 <resources>
     <string name="appName">Cook &amp; Pin</string>
-    <string name="saying">Welcome to our digital cookbook where you can search, save and organize your favorite recipes!</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="saying">Find recipes, pin your favorites, and make a shopping list.</string>
+    <string name="title_home">Discover</string>
+    <string name="title_dashboard">My Pins</string>
+    <string name="title_notifications">Shopping List</string>
     <string name="recipe1_description">Pizza</string>
     <string name="recipe2_description">Chocolate Cake</string>
     <string name="recipe3_description">Potato Soup</string>
@@ -13,7 +13,18 @@
     <string name="recipe7_description">Cheesy Cauliflower Casserole</string>
     <string name="recipe8_description">Pumpkin Pie</string>
     <string name="recipe9_description">Meatballs</string>
-    <string name="textNotifications">We found a new recipe you might enjoy</string>
-    <string name="notification2">You added 2 new recipes to your cookbook</string>
+    <string name="search_recipes">Search recipes or ingredients</string>
+    <string name="no_search_results">No recipes found. Try another ingredient.</string>
+    <string name="no_pins">No pinned recipes yet. Open a recipe in Discover to save it here.</string>
+    <string name="no_shopping_items">Pin a recipe to create your shopping list.</string>
+    <string name="pin_recipe">Pin recipe</string>
+    <string name="unpin_recipe">Unpin recipe</string>
+    <string name="recipe_photo">Recipe photo</string>
+    <string name="open_recipe_with_time">Open %1$s recipe, about %2$d minutes</string>
+    <string name="estimated_time">About %1$d min</string>
+    <string name="pin_short">Pin</string>
+    <string name="unpin_short">Unpin</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
     <string name="recipe_unavailable">Recipe unavailable</string>
 </resources>

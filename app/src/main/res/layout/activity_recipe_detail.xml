@@ -11,6 +11,13 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <ImageView
+            android:id="@+id/recipePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/recipe_photo"
+            android:scaleType="centerCrop" />
+
         <TextView
             android:id="@+id/recipeTitleText"
             android:layout_width="match_parent"
@@ -20,11 +27,26 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/recipeTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/pinRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pin_recipe" />
+
+        <TextView
             android:id="@+id/recipeIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Ingredients"
+            android:text="@string/ingredients"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -40,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Instructions"
+            android:text="@string/instructions"
             android:textSize="20sp"
             android:textStyle="bold" />
 
