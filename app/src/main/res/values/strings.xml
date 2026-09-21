@@ -15,4 +15,5 @@
     <string name="recipe9_description">Meatballs</string>
     <string name="textNotifications">We found a new recipe you might enjoy</string>
     <string name="notification2">You added 2 new recipes to your cookbook</string>
+    <string name="recipe_unavailable">Recipe unavailable</string>
 </resources>
