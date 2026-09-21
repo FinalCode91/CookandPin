@@ -1,10 +1,10 @@
-# Cook & Pin: four-week launch roadmap
+# cookandpin: four-week launch roadmap
 
 Planning date: September 21, 2026. Target: a reliable first Google Play release around October 21. The exact production date depends on account setup, testing, and Google's review. This roadmap complements the [release and stress-test checklist](launch-checklist.md).
 
 ## Product position and current baseline
 
-Cook & Pin is a small offline cookbook: nine bundled recipes, title and ingredient search, saved pins, estimated half/original/1.5×/double portions, and a shopping list with persistent checkmarks. Recipes can now be selected for Shopping independently of pins, and older users' pinned shopping lists migrate. Shopping quantities remain grouped by recipe. No account, import, meal calendar, nutrition database, or sync is present.
+cookandpin is a small offline cookbook: nine bundled recipes, title and ingredient search, saved pins, estimated half/original/1.5×/double portions, and a shopping list with persistent checkmarks. Recipes can now be selected for Shopping independently of pins, and older users' pinned shopping lists migrate. Shopping quantities remain grouped by recipe. No account, import, meal calendar, nutrition database, or sync is present.
 
 Competitors show the baseline users may expect. [Paprika](https://play.google.com/store/apps/details?id=com.hindsightlabs.paprika.android.v3) lists recipe import, scaling, sync, meal plans, and a cooking view. [Mealime](https://play.google.com/store/apps/details?id=com.mealime) offers personalized meal plans and an automatic grocery list. [AnyList](https://play.google.com/store/apps/details?id=com.purplecover.anylist) offers recipe import, a meal calendar, and one-tap shopping additions. [Samsung Food](https://play.google.com/store/apps/details?id=com.foodient.whisk) offers a large recipe library, dietary search, planning, and shared lists. [Recipe Keeper](https://play.google.com/store/apps/details?id=com.tudorspan.recipekeeper) includes offline access, scaling, and aisle grouping. These are product-page descriptions, not controlled comparisons or evidence that any app performs better in a particular test.
 
@@ -14,7 +14,7 @@ The immediate opportunity is a dependable, uncluttered offline path from a recip
 
 | Priority | Work and acceptance criterion | Decision |
 | --- | --- | --- |
-| P0 | Play setup: owner checks whether a developer account exists, completes registration and verification if needed, confirms the package ID, secures an upload key, verifies photo and icon rights, and completes required listing declarations. | Required before release; begin immediately. |
+| P0 | Play setup: owner checks whether a developer account exists, completes registration and verification if needed, uses the agreed package ID, secures an upload key, verifies photo and icon rights, and completes required listing declarations. | Required before release; begin immediately. |
 | P0 | Core reliability: searches, pins, independent shopping selection, checkmarks, and portion estimates survive restart and upgrade; no known crash, missing recipe, incorrect quantity, or inaccessible primary action. | Release gate. |
 | P0 | Real-device and Play-track validation: exact signed release bundle, clean install and upgrade, small/large text, TalkBack, offline use, and low-end phone where possible; triage tester feedback and Play pre-launch issues. | Release gate. |
 | P1 | Focused cooking view: readable step-by-step layout, clear current step, and optional keep-awake behavior while actively cooking. Preserve a straightforward return to the full recipe. | Build in week 2 only if P0 remains green; test on a real phone. |
@@ -23,7 +23,7 @@ The immediate opportunity is a dependable, uncluttered offline path from a recip
 
 ## Week 1: unlock the critical path
 
-1. Owner signs in at [Play Console](https://play.google.com/console/) and checks account status. If no account exists, create one and complete the requested identity/device checks promptly. Confirm the proposed package name `com.finalcode91.cookandpin` before the first upload.
+1. Owner signs in at [Play Console](https://play.google.com/console/) and checks account status. If no account exists, create one and complete the requested identity/device checks promptly. Use `cookandpin` as the visible name and `com.finalcode91.cookandpin` as the technical Android application ID for the first upload.
 2. Clear usage rights for all nine recipe images and launcher art. If rights cannot be established, replace assets before public distribution. Confirm recipe source and actually review ingredient units, temperatures, and scaling, especially baked goods.
 3. Run CI for unit tests, lint, APK, release bundle, and emulator smoke scenarios. Install the app on at least one physical device, record defects, and fix P0 issues.
 4. Prepare listing text, screenshots from the actual app, contact details, content rating, Data safety declaration, and privately backed-up signing credentials. Upload an internally tested signed bundle.

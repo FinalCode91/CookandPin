@@ -1,4 +1,4 @@
-# Cook & Pin
+# cookandpin
 
 An offline Android cookbook with nine built-in recipes. Discover recipes by name or ingredient, pin favorites, choose recipes for a shopping list, and check off ingredients grouped by recipe. Pins, shopping selections, and checkmarks are stored on the device.
 
@@ -6,7 +6,7 @@ An offline Android cookbook with nine built-in recipes. Discover recipes by name
 
 Open this folder in Android Studio and install Android SDK 36 and JDK 17 if prompted. The project uses Android Gradle Plugin 8.13.2 and the included Gradle 8.13 wrapper. Run the `app` configuration on an Android emulator or device (Android 6.0 or newer), or run `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug` from a terminal after configuring the Android SDK.
 
-The proposed Play package name is `com.finalcode91.cookandpin`. Confirm the name before the first Play Console upload because it identifies the app and cannot be renamed in that listing later.
+The visible app name is `cookandpin`. Android requires a dotted application ID, so the technical identifier is `com.finalcode91.cookandpin`. Keep this identifier for the first Play upload and subsequent updates.
 
 For release and tester tasks, see [launch checks](docs/launch-checklist.md).
 

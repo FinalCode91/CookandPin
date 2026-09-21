@@ -1,5 +1,5 @@
 <resources>
-    <string name="appName">Cook &amp; Pin</string>
+    <string name="appName">cookandpin</string>
     <string name="saying">Find recipes, save favorites, and choose what to shop for.</string>
     <string name="title_home">Discover</string>
     <string name="title_dashboard">My Pins</string>

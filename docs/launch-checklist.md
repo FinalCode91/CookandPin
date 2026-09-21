@@ -1,10 +1,10 @@
-# Cook & Pin launch checks
+# cookandpin launch checks
 
-Target: Google Play testing, then production. Treat the first Play upload package name `com.finalcode91.cookandpin` as a proposal until the owner confirms it. Once used for a Play listing, that package name cannot simply be swapped for a later update.
+Target: Google Play testing, then production. Use `cookandpin` as the visible app name and `com.finalcode91.cookandpin` as its required dotted Android application ID. Once used for a Play listing, that ID cannot simply be swapped for a later update.
 
 ## Week 1 — first installable test
 
-- [ ] Confirm the Play package name, app ownership and usage rights for the nine recipe photos and launcher art.
+- [ ] Check that the Play listing uses `cookandpin` and `com.finalcode91.cookandpin`; confirm app ownership and usage rights for the nine recipe photos and launcher art.
 - [ ] Sign in to [Play Console](https://play.google.com/console/) to check whether a developer account already exists. If it does not, register this week: Google lists a US$25 one-time fee and developer identity verification; new personal accounts also require Android device verification. Leave time to finish these steps before the closed test.
 - [ ] Wait for the Android checks workflow on the pull request to pass: unit tests, lint, debug APK, and release bundle.
 - [ ] Check that the API 23 and API 36 emulator smoke jobs pass. They repeatedly search, navigate between tabs, and recreate the app activity. These checks run for each pull request but cannot replace physical phone testing.
