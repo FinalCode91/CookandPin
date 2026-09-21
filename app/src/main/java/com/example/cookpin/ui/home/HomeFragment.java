@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment {
     private LinearLayout results;
+    private ScrollView scroll;
     private EditText search;
     private CheckBox quickRecipes;
     private static final String SEARCH_STATE = "search";
@@ -29,16 +31,23 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         results = root.findViewById(R.id.recipeResults);
+        scroll = root.findViewById(R.id.discoverScroll);
         search = root.findViewById(R.id.recipeSearch);
         quickRecipes = root.findViewById(R.id.quickRecipes);
         if (savedInstanceState != null) {
             search.setText(savedInstanceState.getString(SEARCH_STATE, ""));
             quickRecipes.setChecked(savedInstanceState.getBoolean(QUICK_STATE));
         }
-        quickRecipes.setOnCheckedChangeListener((button, checked) -> render(search.getText().toString()));
+        quickRecipes.setOnCheckedChangeListener((button, checked) -> {
+            render(search.getText().toString());
+            resetResultsScroll();
+        });
         search.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            public void onTextChanged(CharSequence s, int start, int before, int count) { render(s.toString()); }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                render(s.toString());
+                resetResultsScroll();
+            }
             public void afterTextChanged(Editable s) {}
         });
         render(search.getText().toString());
@@ -85,10 +94,20 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void resetResultsScroll() {
+        if (scroll != null) {
+            scroll.scrollTo(0, 0);
+            scroll.post(() -> {
+                if (scroll != null) scroll.scrollTo(0, 0);
+            });
+        }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         results = null;
+        scroll = null;
         search = null;
         quickRecipes = null;
     }
