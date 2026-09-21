@@ -11,7 +11,6 @@
         <item name="android:colorBackground">@color/app_background</item>
         <item name="android:navigationBarColor">@color/surface</item>
         <item name="android:statusBarColor">@color/brand_brown_dark</item>
-        <item name="android:windowLightNavigationBar">false</item>
         <item name="android:fontFamily">sans</item>
         <item name="fontFamily">sans</item>
         <item name="materialButtonStyle">@style/Widget.CookPin.Button.Primary</item>
