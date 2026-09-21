@@ -31,6 +31,11 @@
     <string name="unpin_named_recipe">Unpin %1$s</string>
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
+    <string name="start_cooking">Start step-by-step cooking</string>
+    <string name="close_cooking">Close cooking view</string>
+    <string name="previous_step">Previous step</string>
+    <string name="next_step">Next step</string>
+    <string name="cooking_step_count">Step %1$d of %2$d</string>
     <string name="portion_summary">About %1$d portions · %2$s</string>
     <string name="half_batch">half batch</string>
     <string name="original_batch">original batch</string>

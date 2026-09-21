@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +18,15 @@ import com.example.cookpin.data.ShoppingRecipes;
 import com.example.cookpin.ui.common.RecipeImages;
 
 public class RecipeDetailActivity extends AppCompatActivity {
+    private static final String STATE_COOKING = "cooking_mode";
+    private static final String STATE_STEP = "cooking_step";
+    private View recipeDetails;
+    private View cookingMode;
+    private String[] cookingSteps;
+    private int cookingStep;
+    private boolean isCooking;
+    private OnBackPressedCallback cookingBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +45,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
         String title = recipe == null ? getIntent().getStringExtra("recipeTitle") : recipe.title;
         String ingredients = recipe == null ? getIntent().getStringExtra("recipeIngredients") : recipe.ingredients;
         String instructions = recipe == null ? getIntent().getStringExtra("recipeInstructions") : recipe.instructions;
+        recipeDetails = findViewById(R.id.recipeDetails);
+        cookingMode = findViewById(R.id.cookingMode);
+        cookingBack = new OnBackPressedCallback(false) {
+            @Override public void handleOnBackPressed() { showCooking(false); }
+        };
+        getOnBackPressedDispatcher().addCallback(this, cookingBack);
 
         ((TextView) findViewById(R.id.recipeTitleText)).setText(
+                title == null ? getString(R.string.recipe_unavailable) : title);
+        ((TextView) findViewById(R.id.cookingRecipeTitle)).setText(
                 title == null ? getString(R.string.recipe_unavailable) : title);
         TextView time = findViewById(R.id.recipeTime);
         if (recipe == null) time.setVisibility(View.GONE);
@@ -49,6 +67,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         ImageView photo = findViewById(R.id.recipePhoto);
         Button pin = findViewById(R.id.pinRecipe);
         Button shopping = findViewById(R.id.shoppingRecipe);
+        Button startCooking = findViewById(R.id.startCooking);
         View portionControls = findViewById(R.id.portionControls);
         if (recipe != null) {
             photo.setImageBitmap(RecipeImages.get(getResources(), recipe.image));
@@ -89,13 +108,65 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 refresh.run();
             });
             refresh.run();
+            startCooking.setOnClickListener(v -> {
+                cookingSteps = PortionScaler.instructions(recipe, PortionPreferences.get(this, recipe.id))
+                        .split("\\n(?=\\d+\\.\\s)");
+                cookingStep = 0;
+                showCooking(true);
+            });
         } else {
             photo.setVisibility(View.GONE);
             pin.setVisibility(View.GONE);
             shopping.setVisibility(View.GONE);
+            startCooking.setVisibility(View.GONE);
             portionControls.setVisibility(View.GONE);
             findViewById(R.id.portionNote).setVisibility(View.GONE);
         }
+        findViewById(R.id.closeCooking).setOnClickListener(v -> showCooking(false));
+        findViewById(R.id.previousCookingStep).setOnClickListener(v -> {
+            cookingStep--;
+            renderCookingStep();
+        });
+        findViewById(R.id.nextCookingStep).setOnClickListener(v -> {
+            cookingStep++;
+            renderCookingStep();
+        });
+        if (recipe != null && savedInstanceState != null && savedInstanceState.getBoolean(STATE_COOKING)) {
+            cookingSteps = PortionScaler.instructions(recipe, PortionPreferences.get(this, recipe.id))
+                    .split("\\n(?=\\d+\\.\\s)");
+            cookingStep = Math.max(0, Math.min(savedInstanceState.getInt(STATE_STEP), cookingSteps.length - 1));
+            showCooking(true);
+        }
+    }
+
+    private void showCooking(boolean visible) {
+        isCooking = visible;
+        recipeDetails.setVisibility(visible ? View.GONE : View.VISIBLE);
+        cookingMode.setVisibility(visible ? View.VISIBLE : View.GONE);
+        cookingMode.setKeepScreenOn(visible);
+        cookingBack.setEnabled(visible);
+        if (visible) {
+            renderCookingStep();
+            findViewById(R.id.cookingStepCounter).requestFocus();
+        }
+    }
+
+    private void renderCookingStep() {
+        if (cookingSteps == null || cookingSteps.length == 0) return;
+        ((TextView) findViewById(R.id.cookingStepCounter)).setText(getString(
+                R.string.cooking_step_count, cookingStep + 1, cookingSteps.length));
+        ((TextView) findViewById(R.id.cookingStepText)).setText(
+                cookingSteps[cookingStep].trim().replaceFirst("^\\d+\\.\\s*", ""));
+        findViewById(R.id.previousCookingStep).setEnabled(cookingStep > 0);
+        findViewById(R.id.nextCookingStep).setEnabled(cookingStep < cookingSteps.length - 1);
+        ((android.widget.ScrollView) cookingMode).smoothScrollTo(0, 0);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@androidx.annotation.NonNull Bundle outState) {
+        outState.putBoolean(STATE_COOKING, isCooking);
+        outState.putInt(STATE_STEP, cookingStep);
+        super.onSaveInstanceState(outState);
     }
 
     private void updatePinButton(Button button, String id) {
@@ -109,6 +180,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        if (isCooking) {
+            showCooking(false);
+            return true;
+        }
         getOnBackPressedDispatcher().onBackPressed();
         return true;
     }

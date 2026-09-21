@@ -25,6 +25,7 @@ Give each tester these tasks without explaining the screens first:
 4. Check two shopping ingredients, close and reopen the app, and verify the checkmarks. Change the batch size and note that the recipe's checkmarks reset.
 5. Unpin a shopping recipe; verify that it disappears from My Pins but remains in Shopping List with its checkmarks. Remove it explicitly from Shopping List and verify the other shopping recipes remain.
 6. Use a small phone and the largest font size you normally use. Try both light and dark mode.
+7. Start the cooking view, move forward and backward through steps, rotate the phone, then exit with Back. Verify the current step survives rotation and the full directions remain available.
 
 Ask each tester: device model, Android version, app version, exact steps, expected result, actual result, screenshot or screen recording if possible, and whether they would use the app again. Have them report confusing behavior even if nothing crashes. Review Play Console's pre-launch report and testing feedback daily.
 
@@ -35,6 +36,7 @@ Ask each tester: device model, Android version, app version, exact steps, expect
 | Rapid search and tab switching | Emulator: eight cycles of matching and unmatched searches across all tabs on API 23 and API 36 | Repeat on a small or slower phone; rapidly pin and unpin different recipes while searching, then inspect My Pins and Shopping List |
 | Portion and shopping changes | Unit tests check portion calculations; emulator pins Pizza, confirms Shopping stays empty until added, halves and doubles it, checks shopping reset and activity recreation, then unpins and removes it from Shopping | Change batch size repeatedly, tick shopping items, switch recipes, close and reopen; check that quantities and checkmarks match the selected batches |
 | Activity and process recovery | Emulator recreates the main activity | Rotate on each tab and a detail page; background the app, force-stop it, then reopen it and verify saved pins, portions, and shopping checks |
+| Cooking view | Emulator navigates steps and recreates the detail activity | Check large text, TalkBack, landscape rotation, and screen timeout while cooking; close the view and check normal sleep resumes |
 | Older and constrained device | Emulator runs API 23 with default resources | Try the oldest available phone, low storage or memory pressure, and a slow connection; look for crashes, clipped controls, and delayed taps |
 | Install and upgrade | CI assembles the APK and bundle | Install a signed test build, save data, install a higher `versionCode` through Play on top, and verify preferences survive |
 | Accessibility and connectivity | Android lint catches some resource and accessibility issues | Use TalkBack and large text through the entire recipe, pin, portion, and shopping flow; repeat without network access |

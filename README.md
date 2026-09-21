@@ -12,7 +12,7 @@ For release and tester tasks, see [launch checks](docs/launch-checklist.md).
 
 ## How it works
 
-- **Discover:** scroll or search recipes by name and ingredient; tap a card to see details or tap Pin. On a detail page, use + or − to choose half, original, one-and-a-half, or double batch sizes. The estimated portions and ingredient amounts update and are remembered for each recipe.
+- **Discover:** scroll or search recipes by name and ingredient; tap a card to see details or tap Pin. On a detail page, use + or − to choose half, original, one-and-a-half, or double batch sizes. The estimated portions and ingredient amounts update and are remembered for each recipe. Start the cooking view to read one step at a time; the screen stays awake while it is open, and closing it returns to the full directions.
 - **My Pins:** see saved recipes and remove them with Unpin.
 - **Shopping List:** open a recipe and add its ingredients, even if it is not pinned. Check off items or remove the recipe from the list. Changing its batch size or removing it from Shopping List resets that recipe's checkmarks; pinning or unpinning does not change its shopping selection. On upgrade from earlier builds, existing pins are added to Shopping List once to preserve the old list.
 

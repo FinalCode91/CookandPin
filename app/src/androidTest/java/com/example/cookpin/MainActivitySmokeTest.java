@@ -9,14 +9,18 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.isNotChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
 
 import android.content.Context;
+import android.content.Intent;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -118,5 +122,29 @@ public class MainActivitySmokeTest {
         activity.getScenario().recreate();
         onView(withId(R.id.navigation_notifications)).perform(click());
         onView(withText("2 1/2 cups all-purpose flour")).check(matches(isNotChecked()));
+    }
+
+    @Test public void cookingModeNavigatesStepsAndSurvivesRecreation() {
+        Intent intent = new Intent(InstrumentationRegistry.getInstrumentation().getTargetContext(),
+                RecipeDetailActivity.class).putExtra("recipeId", "recipe1");
+        try (ActivityScenario<RecipeDetailActivity> detail = ActivityScenario.launch(intent)) {
+            onView(withId(R.id.startCooking)).perform(scrollTo(), click());
+            onView(withId(R.id.cookingStepCounter)).check(matches(withText("Step 1 of 4")));
+            onView(withId(R.id.previousCookingStep)).check(matches(not(isEnabled())));
+            onView(withId(R.id.nextCookingStep)).perform(click());
+            onView(withId(R.id.cookingStepText)).check(matches(withText(containsString("Knead"))));
+            onView(withId(R.id.nextCookingStep)).perform(click());
+            detail.recreate();
+            onView(withId(R.id.cookingStepCounter)).check(matches(withText("Step 3 of 4")));
+            onView(withId(R.id.nextCookingStep)).perform(click());
+            onView(withId(R.id.nextCookingStep)).check(matches(not(isEnabled())));
+            onView(withId(R.id.previousCookingStep)).check(matches(isEnabled()));
+            pressBack();
+            onView(withId(R.id.recipeDetails)).check(matches(isDisplayed()));
+            onView(withId(R.id.startCooking)).perform(scrollTo(), click());
+            onView(withId(R.id.cookingStepCounter)).check(matches(withText("Step 1 of 4")));
+            onView(withId(R.id.closeCooking)).perform(click());
+            onView(withId(R.id.recipeDetails)).check(matches(isDisplayed()));
+        }
     }
 }
