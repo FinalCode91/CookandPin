@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -19,19 +21,35 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
     private LinearLayout results;
     private EditText search;
+    private CheckBox quickRecipes;
+    private static final String SEARCH_STATE = "search";
+    private static final String QUICK_STATE = "quick";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         results = root.findViewById(R.id.recipeResults);
         search = root.findViewById(R.id.recipeSearch);
+        quickRecipes = root.findViewById(R.id.quickRecipes);
+        if (savedInstanceState != null) {
+            search.setText(savedInstanceState.getString(SEARCH_STATE, ""));
+            quickRecipes.setChecked(savedInstanceState.getBoolean(QUICK_STATE));
+        }
+        quickRecipes.setOnCheckedChangeListener((button, checked) -> render(search.getText().toString()));
         search.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) { render(s.toString()); }
             public void afterTextChanged(Editable s) {}
         });
-        render("");
+        render(search.getText().toString());
         return root;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        if (search != null) outState.putString(SEARCH_STATE, search.getText().toString());
+        if (quickRecipes != null) outState.putBoolean(QUICK_STATE, quickRecipes.isChecked());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -46,6 +64,7 @@ public class HomeFragment extends Fragment {
         String term = query.trim().toLowerCase(Locale.ROOT);
         int matches = 0;
         for (RecipeCatalog.Recipe recipe : RecipeCatalog.ALL) {
+            if (quickRecipes != null && quickRecipes.isChecked() && recipe.minutes > 30) continue;
             if (!recipe.title.toLowerCase(Locale.ROOT).contains(term)
                     && !recipe.ingredients.toLowerCase(Locale.ROOT).contains(term)) continue;
             results.addView(RecipeCards.create(requireContext(), recipe, null));
@@ -53,9 +72,16 @@ public class HomeFragment extends Fragment {
         }
         if (matches == 0) {
             TextView empty = new TextView(requireContext());
-            empty.setText(R.string.no_search_results);
+            empty.setText(quickRecipes != null && quickRecipes.isChecked()
+                    ? R.string.no_filtered_results : R.string.no_search_results);
             empty.setTextSize(18);
             results.addView(empty);
+            if (!term.isEmpty()) {
+                Button clear = new Button(requireContext());
+                clear.setText(R.string.clear_search);
+                clear.setOnClickListener(view -> search.setText(""));
+                results.addView(clear);
+            }
         }
     }
 
@@ -64,5 +90,6 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         results = null;
         search = null;
+        quickRecipes = null;
     }
 }

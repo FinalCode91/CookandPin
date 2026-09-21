@@ -1,5 +1,8 @@
 package com.example.cookpin;
 
+import android.content.Intent;
+import android.content.ActivityNotFoundException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -68,10 +71,27 @@ public class RecipeDetailActivity extends AppCompatActivity {
         Button pin = findViewById(R.id.pinRecipe);
         Button shopping = findViewById(R.id.shoppingRecipe);
         Button startCooking = findViewById(R.id.startCooking);
+        Button source = findViewById(R.id.recipeSource);
         View portionControls = findViewById(R.id.portionControls);
         if (recipe != null) {
-            photo.setImageBitmap(RecipeImages.get(getResources(), recipe.image));
-            photo.setContentDescription(recipe.title);
+            if (recipe.image == R.drawable.ic_recipe_placeholder) {
+                photo.setImageResource(recipe.image);
+                photo.setContentDescription(getString(R.string.recipe_illustration));
+            } else {
+                photo.setImageBitmap(RecipeImages.get(getResources(), recipe.image));
+                photo.setContentDescription(recipe.title);
+            }
+            if (recipe.sourceUrl != null) {
+                source.setVisibility(View.VISIBLE);
+                source.setOnClickListener(v -> {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(recipe.sourceUrl)));
+                    } catch (ActivityNotFoundException exception) {
+                        android.widget.Toast.makeText(this, R.string.no_browser_available,
+                                android.widget.Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
             updatePinButton(pin, recipe.id);
             pin.setOnClickListener(v -> {
                 PinnedRecipes.setPinned(this, recipe.id, !PinnedRecipes.contains(this, recipe.id));

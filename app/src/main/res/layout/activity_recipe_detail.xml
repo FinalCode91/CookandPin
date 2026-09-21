@@ -134,6 +134,13 @@
             android:layout_marginTop="8dp"
             android:paddingBottom="24dp"
             android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/recipeSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/view_recipe_source"
+            android:visibility="gone" />
     </LinearLayout>
 </ScrollView>
 

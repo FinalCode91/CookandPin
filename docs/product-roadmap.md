@@ -4,11 +4,11 @@ Planning date: September 21, 2026. Target: a reliable first Google Play release 
 
 ## Product position and current baseline
 
-cookandpin is a small offline cookbook: nine bundled recipes, title and ingredient search, saved pins, estimated half/original/1.5×/double portions, and a shopping list with persistent checkmarks. Recipes can now be selected for Shopping independently of pins, and older users' pinned shopping lists migrate. Shopping quantities remain grouped by recipe. No account, import, meal calendar, nutrition database, or sync is present.
+cookandpin is a small offline cookbook: 29 bundled recipes, title and ingredient search, saved pins, estimated half/original/1.5×/double portions, and a shopping list with persistent checkmarks. Recipes can now be selected for Shopping independently of pins, and older users' pinned shopping lists migrate. Shopping quantities remain grouped by recipe. No account, import, meal calendar, nutrition database, or sync is present.
 
 Competitors show the baseline users may expect. [Paprika](https://play.google.com/store/apps/details?id=com.hindsightlabs.paprika.android.v3) lists recipe import, scaling, sync, meal plans, and a cooking view. [Mealime](https://play.google.com/store/apps/details?id=com.mealime) offers personalized meal plans and an automatic grocery list. [AnyList](https://play.google.com/store/apps/details?id=com.purplecover.anylist) offers recipe import, a meal calendar, and one-tap shopping additions. [Samsung Food](https://play.google.com/store/apps/details?id=com.foodient.whisk) offers a large recipe library, dietary search, planning, and shared lists. [Recipe Keeper](https://play.google.com/store/apps/details?id=com.tudorspan.recipekeeper) includes offline access, scaling, and aisle grouping. These are product-page descriptions, not controlled comparisons or evidence that any app performs better in a particular test.
 
-The immediate opportunity is a dependable, uncluttered offline path from a recipe to correctly scaled ingredients and a usable store list. Nine recipes limit repeat use; more verified content matters, but quality and rights come before a numeric recipe target. Do not promise that a first release exceeds established apps.
+The immediate opportunity is a dependable, uncluttered offline path from a recipe to correctly scaled ingredients and a usable store list. The 20 added recipes expand variety, but need real cooking feedback and quality review before release; verified content matters more than a numeric recipe target. Do not promise that a first release exceeds established apps.
 
 ## Priority order
 

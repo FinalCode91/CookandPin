@@ -44,9 +44,12 @@ public final class PortionScaler {
         String[][] nouns = {{"cup", "cups"}, {"can", "cans"}, {"egg", "eggs"},
                 {"head", "heads"}, {"carrot", "carrots"}, {"clove", "cloves"},
                 {"onion", "onions"}, {"pepper", "peppers"}, {"shell", "shells"},
-                {"tortilla", "tortillas"}};
+                {"tortilla", "tortillas"}, {"apple", "apples"}, {"banana", "bananas"},
+                {"tomato", "tomatoes"}, {"potato", "potatoes"}, {"lemon", "lemons"},
+                {"lime", "limes"}, {"rib", "ribs"}, {"sprig", "sprigs"},
+                {"slice", "slices"}, {"breast", "breasts"}};
         for (String[] noun : nouns) {
-            rest = rest.replaceAll("\\b" + noun[0] + "s?\\b",
+            rest = rest.replaceAll("\\b(?:" + noun[0] + "|" + noun[1] + ")\\b",
                     value > 1 ? noun[1] : noun[0]);
         }
         return format(value) + " " + rest;
@@ -84,13 +87,24 @@ public final class PortionScaler {
     }
 
     private static String format(double amount) {
-        int eighths = (int) Math.round(amount * 8);
-        int whole = eighths / 8;
-        int remainder = eighths % 8;
+        // Forty-eighths preserve the thirds, sixths and sixteenths used in recipes.
+        // Rounding to eighths would turn half of 1/3 cup into 1/8 cup.
+        int fortyEighths = (int) Math.round(amount * 48);
+        int whole = fortyEighths / 48;
+        int remainder = fortyEighths % 48;
         if (remainder == 0) return Integer.toString(whole);
-        int divisor = remainder % 4 == 0 ? 4 : remainder % 2 == 0 ? 2 : 1;
-        String fraction = (remainder / divisor) + "/" + (8 / divisor);
+        int divisor = gcd(remainder, 48);
+        String fraction = (remainder / divisor) + "/" + (48 / divisor);
         return whole == 0 ? fraction : whole + " " + fraction;
+    }
+
+    private static int gcd(int a, int b) {
+        while (b != 0) {
+            int next = a % b;
+            a = b;
+            b = next;
+        }
+        return a;
     }
 
     private PortionScaler() {}

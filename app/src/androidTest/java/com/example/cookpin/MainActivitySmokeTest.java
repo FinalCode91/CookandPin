@@ -3,6 +3,7 @@ package com.example.cookpin;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -24,6 +25,7 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import com.example.cookpin.data.ShoppingRecipes;
 import java.util.Collections;
 import org.junit.Rule;
 import org.junit.Test;
@@ -122,6 +124,34 @@ public class MainActivitySmokeTest {
         activity.getScenario().recreate();
         onView(withId(R.id.navigation_notifications)).perform(click());
         onView(withText("2 1/2 cups all-purpose flour")).check(matches(isNotChecked()));
+    }
+
+    @Test public void manuallyAddedShoppingItemsPersistIndependentlyOfRecipeIngredients() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        context.getSharedPreferences("cookandpin_shopping", Context.MODE_PRIVATE).edit().clear().commit();
+        context.getSharedPreferences("cookandpin_shopping_recipes", Context.MODE_PRIVATE)
+                .edit().clear().commit();
+        activity.getScenario().recreate();
+
+        onView(withId(R.id.navigation_notifications)).perform(click());
+        onView(withId(R.id.newShoppingItem)).perform(replaceText("   "), closeSoftKeyboard());
+        onView(withId(R.id.addShoppingItem)).perform(click());
+        onView(withText(R.string.no_shopping_items)).check(matches(isDisplayed()));
+        onView(withId(R.id.newShoppingItem)).perform(replaceText("  Oat milk  "), closeSoftKeyboard());
+        onView(withId(R.id.addShoppingItem)).perform(click());
+        onView(withText("Oat milk")).check(matches(isNotChecked()));
+        onView(withText("Oat milk")).perform(click());
+        onView(withText("Oat milk")).check(matches(isChecked()));
+        activity.getScenario().recreate();
+        onView(withText("Oat milk")).check(matches(isChecked()));
+
+        ShoppingRecipes.setSelected(context, "recipe1", true);
+        activity.getScenario().recreate();
+        onView(withText("Oat milk")).check(matches(isChecked()));
+        onView(withContentDescription("Remove Pizza from shopping list")).perform(click());
+        onView(withText("Oat milk")).check(matches(isChecked()));
+        onView(withContentDescription("Remove Oat milk from shopping list")).perform(click());
+        onView(withText(R.string.no_shopping_items)).check(matches(isDisplayed()));
     }
 
     @Test public void cookingModeNavigatesStepsAndSurvivesRecreation() {

@@ -1,5 +1,6 @@
 package com.example.cookpin.data;
 
+import com.example.cookpin.R;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import java.util.HashSet;
@@ -12,11 +13,32 @@ public class PortionScalerTest {
     private static final Pattern QUANTITY = Pattern.compile("^(\\d+(?: \\d+/\\d+|/\\d+)?) ");
 
     @Test
+    public void twentyAddedRecipesHaveUniqueIdsSourcesAndNumberedSteps() {
+        assertEquals(29, RecipeCatalog.ALL.size());
+        Set<String> ids = new HashSet<>();
+        for (RecipeCatalog.Recipe recipe : RecipeCatalog.ALL) {
+            assertTrue("Duplicate recipe ID: " + recipe.id, ids.add(recipe.id));
+            assertTrue(recipe.minutes > 0);
+            if (Integer.parseInt(recipe.id.substring("recipe".length())) < 10) continue;
+            assertTrue(recipe.id, recipe.sourceUrl.startsWith("https://"));
+            assertEquals(recipe.id, R.drawable.ic_recipe_placeholder, recipe.image);
+            String[] steps = recipe.instructions.split("\\n");
+            for (int i = 0; i < steps.length; i++)
+                assertTrue(recipe.id + " step " + (i + 1), steps[i].startsWith((i + 1) + ". "));
+        }
+    }
+
+    @Test
     public void fractionsScaleAndRemainReadable() {
         assertEquals("1 1/4 cups all-purpose flour",
                 PortionScaler.ingredient("2 1/2 cups all-purpose flour", 0));
         assertEquals("1 cup milk", PortionScaler.ingredient("1/2 cup milk", 3));
         assertEquals("1 1/8 cups cocoa", PortionScaler.ingredient("3/4 cup cocoa", 2));
+        assertEquals("1/6 cup oil", PortionScaler.ingredient("1/3 cup oil", 0));
+        assertEquals("2/3 cup oil", PortionScaler.ingredient("1/3 cup oil", 3));
+        assertEquals("1/16 tsp spice", PortionScaler.ingredient("1/8 tsp spice", 0));
+        assertEquals("1 tomato", PortionScaler.ingredient("2 tomatoes", 0));
+        assertEquals("2 potatoes", PortionScaler.ingredient("1 potato", 3));
     }
 
     @Test

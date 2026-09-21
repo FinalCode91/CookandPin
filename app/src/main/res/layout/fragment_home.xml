@@ -11,6 +11,11 @@
         android:hint="@string/search_recipes"
         android:inputType="text"
         android:singleLine="true" />
+    <CheckBox
+        android:id="@+id/quickRecipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/quick_recipes" />
     <ScrollView
         android:id="@+id/discoverScroll"
         android:layout_width="match_parent"
