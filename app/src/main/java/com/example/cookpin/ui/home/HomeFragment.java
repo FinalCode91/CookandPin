@@ -83,7 +83,8 @@ public class HomeFragment extends Fragment {
         }
         if (resultsSummary != null) {
             resultsSummary.setText(matches == 1
-                    ? R.string.one_recipe_found : getString(R.string.recipes_found, matches));
+                    ? getString(R.string.one_recipe_found)
+                    : getString(R.string.recipes_found, matches));
         }
         if (matches == 0) {
             TextView empty = new TextView(requireContext());
