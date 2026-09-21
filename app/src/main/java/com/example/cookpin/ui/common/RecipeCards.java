@@ -41,16 +41,16 @@ public final class RecipeCards {
         image.setBackgroundColor(context.getColor(R.color.surface_variant));
         image.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         body.addView(image, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, (int) (164 * density)));
+                LinearLayout.LayoutParams.MATCH_PARENT, (int) (120 * density)));
 
         LinearLayout row = new LinearLayout(context);
         row.setGravity(Gravity.CENTER_VERTICAL);
-        row.setPadding(space, (int) (12 * density), (int) (12 * density), (int) (12 * density));
+        row.setPadding(space, (int) (8 * density), (int) (12 * density), (int) (8 * density));
         LinearLayout info = new LinearLayout(context);
         info.setOrientation(LinearLayout.VERTICAL);
         TextView title = new TextView(context);
         title.setText(recipe.title);
-        title.setTextSize(18);
+        title.setTextSize(17);
         title.setTypeface(null, Typeface.BOLD);
         title.setTextColor(context.getColor(R.color.on_surface));
         title.setMaxLines(2);
