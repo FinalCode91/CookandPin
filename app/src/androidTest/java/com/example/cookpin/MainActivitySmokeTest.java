@@ -40,7 +40,8 @@ public class MainActivitySmokeTest {
         for (int i = 0; i < 8; i++) {
             onView(withId(R.id.recipeSearch)).perform(replaceText("pizza"));
             onView(withId(R.id.recipeResults)).check(matches(hasMinimumChildCount(1)));
-            onView(withText(R.string.recipe1_description)).check(matches(isDisplayed()));
+            onView(withText(R.string.recipe1_description)).perform(scrollTo())
+                    .check(matches(isDisplayed()));
             onView(withId(R.id.recipeSearch)).perform(replaceText("no-recipe-matches-999"));
             onView(withText(R.string.no_search_results)).check(matches(isDisplayed()));
             onView(withId(R.id.navigation_dashboard)).perform(click());
@@ -55,7 +56,8 @@ public class MainActivitySmokeTest {
         onView(withId(R.id.recipeSearch)).check(matches(isDisplayed()));
         onView(withId(R.id.recipeSearch)).perform(replaceText("pizza"));
         onView(withId(R.id.recipeResults)).check(matches(hasMinimumChildCount(1)));
-        onView(withText(R.string.recipe1_description)).check(matches(isDisplayed()));
+        onView(withText(R.string.recipe1_description)).perform(scrollTo())
+                .check(matches(isDisplayed()));
     }
 
     @Test public void pinAndShoppingSelectionSurvivePortionChangesAndRecreation() {

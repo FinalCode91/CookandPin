@@ -44,7 +44,8 @@ public class DiscoveryFilterTest {
         onView(withId(R.id.quickRecipes)).perform(click());
         onView(withId(R.id.recipeSearch)).perform(replaceText("broccoli"));
         onView(withId(R.id.recipeResults)).check(matches(hasMinimumChildCount(2)));
-        onView(withText(R.string.recipe6_description)).check(matches(isDisplayed()));
+        onView(withText(R.string.recipe6_description)).perform(scrollTo())
+                .check(matches(isDisplayed()));
         onView(withText("Vegetable Coconut Curry")).perform(scrollTo())
                 .check(matches(isDisplayed()));
     }
