@@ -18,12 +18,13 @@ import java.util.Locale;
 
 public class HomeFragment extends Fragment {
     private LinearLayout results;
+    private EditText search;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         results = root.findViewById(R.id.recipeResults);
-        EditText search = root.findViewById(R.id.recipeSearch);
+        search = root.findViewById(R.id.recipeSearch);
         search.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) { render(s.toString()); }
@@ -31,6 +32,12 @@ public class HomeFragment extends Fragment {
         });
         render("");
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (search != null) render(search.getText().toString());
     }
 
     private void render(String query) {
@@ -56,5 +63,6 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         results = null;
+        search = null;
     }
 }

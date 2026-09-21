@@ -41,8 +41,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
         else time.setText(getString(R.string.estimated_time, recipe.minutes));
         TextView ingredientList = findViewById(R.id.recipeIngredientsList);
         ingredientList.setText(ingredients == null ? "" : ingredients);
-        ((TextView) findViewById(R.id.recipeInstructionsList)).setText(
-                instructions == null ? "" : instructions);
+        TextView instructionList = findViewById(R.id.recipeInstructionsList);
+        instructionList.setText(instructions == null ? "" : instructions);
 
         ImageView photo = findViewById(R.id.recipePhoto);
         Button pin = findViewById(R.id.pinRecipe);
@@ -64,15 +64,20 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 ((TextView) findViewById(R.id.portionSummary)).setText(getString(
                         R.string.portion_summary, PortionScaler.servings(recipe, scale), labels[scale]));
                 ingredientList.setText(PortionScaler.ingredients(recipe, scale));
+                instructionList.setText(PortionScaler.instructions(recipe, scale));
                 decrease.setEnabled(scale > 0);
                 increase.setEnabled(scale < 3);
             };
             decrease.setOnClickListener(v -> {
                 PortionPreferences.set(this, recipe, PortionPreferences.get(this, recipe.id) - 1);
+                if (PinnedRecipes.contains(this, recipe.id))
+                    android.widget.Toast.makeText(this, R.string.shopping_reset, android.widget.Toast.LENGTH_SHORT).show();
                 refresh.run();
             });
             increase.setOnClickListener(v -> {
                 PortionPreferences.set(this, recipe, PortionPreferences.get(this, recipe.id) + 1);
+                if (PinnedRecipes.contains(this, recipe.id))
+                    android.widget.Toast.makeText(this, R.string.shopping_reset, android.widget.Toast.LENGTH_SHORT).show();
                 refresh.run();
             });
             refresh.run();

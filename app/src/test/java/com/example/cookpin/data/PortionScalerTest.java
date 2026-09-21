@@ -19,5 +19,11 @@ public class PortionScalerTest {
                 PortionScaler.ingredient("1 can (15 oz each) pumpkin puree", 3));
         assertEquals(4, PortionScaler.servings(RecipeCatalog.find("recipe8"), 0));
         assertEquals(16, PortionScaler.servings(RecipeCatalog.find("recipe8"), 3));
+        assertEquals("1 unbaked 6-inch pie shell", PortionScaler.ingredient(
+                "1 unbaked 9-inch deep-dish pie shell", 0));
+        assertEquals("2 unbaked 9-inch deep-dish pie shells", PortionScaler.ingredient(
+                "1 unbaked 9-inch deep-dish pie shell", 3));
+        org.junit.Assert.assertTrue(PortionScaler.instructions(
+                RecipeCatalog.find("recipe8"), 0).contains("6-inch"));
     }
 }

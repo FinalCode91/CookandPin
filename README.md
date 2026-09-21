@@ -4,7 +4,11 @@ An offline Android cookbook with nine built-in recipes. Discover recipes by name
 
 ## Open and build
 
-Open this folder in Android Studio and install Android SDK 35 and JDK 17 if prompted. The project uses Android Gradle Plugin 8.9.2 and the included Gradle 8.11.1 wrapper. Run the `app` configuration on an Android emulator or device (Android 6.0 or newer), or run `./gradlew :app:assembleDebug` from a terminal after configuring the Android SDK.
+Open this folder in Android Studio and install Android SDK 36 and JDK 17 if prompted. The project uses Android Gradle Plugin 8.13.2 and the included Gradle 8.13 wrapper. Run the `app` configuration on an Android emulator or device (Android 6.0 or newer), or run `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug` from a terminal after configuring the Android SDK.
+
+The proposed Play package name is `com.finalcode91.cookandpin`. Confirm the name before the first Play Console upload because it identifies the app and cannot be renamed in that listing later.
+
+For release and tester tasks, see [launch checks](docs/launch-checklist.md).
 
 ## How it works
 

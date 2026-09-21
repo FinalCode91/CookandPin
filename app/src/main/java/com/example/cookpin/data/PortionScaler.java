@@ -29,6 +29,14 @@ public final class PortionScaler {
 
     public static String ingredient(String line, int scale) {
         if (clamp(scale) == ORIGINAL) return line;
+        if (line.equals("1 unbaked 9-inch deep-dish pie shell")) {
+            switch (clamp(scale)) {
+                case 0: return "1 unbaked 6-inch pie shell";
+                case 2: return "1 unbaked 9-inch deep-dish pie shell and 1 unbaked 6-inch pie shell";
+                case 3: return "2 unbaked 9-inch deep-dish pie shells";
+                default: return line;
+            }
+        }
         Matcher match = AMOUNT.matcher(line);
         if (!match.matches()) return line;
         double value = parse(match.group(1)) * FACTORS[clamp(scale)];
@@ -42,6 +50,25 @@ public final class PortionScaler {
                     value > 1 ? noun[1] : noun[0]);
         }
         return format(value) + " " + rest;
+    }
+
+    public static String instructions(RecipeCatalog.Recipe recipe, int scale) {
+        if (!"recipe8".equals(recipe.id) || clamp(scale) == ORIGINAL) return recipe.instructions;
+        String start = "1. Heat oven to 425°F. Whisk pumpkin, condensed milk, eggs and spice until smooth.\n";
+        String finish = "\n4. Cool pies on a wire rack for about 2 hours before slicing. Refrigerate leftovers.";
+        if (clamp(scale) == 0) {
+            return start + "2. Pour filling into a 6-inch pie shell. Bake at 425°F for 15 minutes.\n"
+                    + "3. Lower oven to 350°F. Start checking after 20 minutes; keep baking until a knife inserted near the center comes out clean."
+                    + finish;
+        }
+        if (clamp(scale) == 2) {
+            return start + "2. Divide filling between a 9-inch deep-dish shell and a 6-inch shell, keeping the filling at a similar depth. Bake at 425°F for 15 minutes.\n"
+                    + "3. Lower oven to 350°F. Start checking the smaller pie after 20 minutes and the larger after 40 minutes; remove each when a knife inserted near the center comes out clean."
+                    + finish;
+        }
+        return start + "2. Divide filling between two 9-inch deep-dish shells. Bake at 425°F for 15 minutes.\n"
+                + "3. Lower oven to 350°F. Bake another 40–50 minutes, checking each pie until a knife inserted near the center comes out clean."
+                + finish;
     }
 
     private static double parse(String amount) {

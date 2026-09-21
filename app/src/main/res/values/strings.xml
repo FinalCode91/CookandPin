@@ -24,6 +24,8 @@
     <string name="estimated_time">About %1$d min</string>
     <string name="pin_short">Pin</string>
     <string name="unpin_short">Unpin</string>
+    <string name="pin_named_recipe">Pin %1$s</string>
+    <string name="unpin_named_recipe">Unpin %1$s</string>
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="portion_summary">About %1$d portions · %2$s</string>
@@ -34,6 +36,7 @@
     <string name="decrease_portions">Decrease portions</string>
     <string name="increase_portions">Increase portions</string>
     <string name="portion_note">Amounts are estimates. Adjust the pan and check doneness when changing batch size. Beat an egg before using part of it.</string>
+    <string name="shopping_reset">Shopping checkmarks for this recipe were reset.</string>
     <string name="shopping_recipe_heading">%1$s · about %2$d portions</string>
     <string name="recipe_unavailable">Recipe unavailable</string>
 </resources>
