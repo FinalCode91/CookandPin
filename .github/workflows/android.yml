@@ -68,16 +68,13 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
       - uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DEMO_API_LEVEL: ${{ matrix.api-level }}
         with:
           api-level: ${{ matrix.api-level }}
           target: google_apis
           arch: x86_64
-          script: |
-            ./gradlew --no-daemon :app:connectedDebugAndroidTest
-            if [ "${{ matrix.api-level }}" = "36" ]; then
-              mkdir -p app/build/demo-screens
-              adb pull /sdcard/Android/data/com.finalcode91.cookandpin/files/Pictures/demo/. app/build/demo-screens/
-            fi
+          script: bash scripts/capture-demo.sh
       - name: Walkthrough screenshots
         if: matrix.api-level == 36
         uses: actions/upload-artifact@v4
