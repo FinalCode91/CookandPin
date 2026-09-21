@@ -72,7 +72,19 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: google_apis
           arch: x86_64
-          script: ./gradlew --no-daemon :app:connectedDebugAndroidTest
+          script: |
+            ./gradlew --no-daemon :app:connectedDebugAndroidTest
+            if [ "${{ matrix.api-level }}" = "36" ]; then
+              mkdir -p app/build/demo-screens
+              adb pull /sdcard/Android/data/com.finalcode91.cookandpin/files/Pictures/demo/. app/build/demo-screens/
+            fi
+      - name: Walkthrough screenshots
+        if: matrix.api-level == 36
+        uses: actions/upload-artifact@v4
+        with:
+          name: cookandpin-demo-screens
+          path: app/build/demo-screens/*.png
+          if-no-files-found: error
       - name: Preserve instrumentation results on failure
         if: failure()
         uses: actions/upload-artifact@v4
