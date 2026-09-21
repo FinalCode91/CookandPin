@@ -24,6 +24,7 @@ public class HomeFragment extends Fragment {
     private ScrollView scroll;
     private EditText search;
     private CheckBox quickRecipes;
+    private TextView resultsSummary;
     private static final String SEARCH_STATE = "search";
     private static final String QUICK_STATE = "quick";
 
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
         scroll = root.findViewById(R.id.discoverScroll);
         search = root.findViewById(R.id.recipeSearch);
         quickRecipes = root.findViewById(R.id.quickRecipes);
+        resultsSummary = root.findViewById(R.id.resultsSummary);
         if (savedInstanceState != null) {
             search.setText(savedInstanceState.getString(SEARCH_STATE, ""));
             quickRecipes.setChecked(savedInstanceState.getBoolean(QUICK_STATE));
@@ -79,14 +81,23 @@ public class HomeFragment extends Fragment {
             results.addView(RecipeCards.create(requireContext(), recipe, null));
             matches++;
         }
+        if (resultsSummary != null) {
+            resultsSummary.setText(matches == 1
+                    ? R.string.one_recipe_found : getString(R.string.recipes_found, matches));
+        }
         if (matches == 0) {
             TextView empty = new TextView(requireContext());
             empty.setText(quickRecipes != null && quickRecipes.isChecked()
                     ? R.string.no_filtered_results : R.string.no_search_results);
             empty.setTextSize(18);
+            empty.setTextColor(requireContext().getColor(R.color.on_surface_variant));
+            empty.setGravity(android.view.Gravity.CENTER);
+            empty.setPadding(24, 64, 24, 24);
             results.addView(empty);
             if (!term.isEmpty()) {
-                Button clear = new Button(requireContext());
+                com.google.android.material.button.MaterialButton clear =
+                        new com.google.android.material.button.MaterialButton(
+                                requireContext(), null, com.google.android.material.R.attr.materialButtonOutlinedStyle);
                 clear.setText(R.string.clear_search);
                 clear.setOnClickListener(view -> search.setText(""));
                 results.addView(clear);
@@ -110,5 +121,6 @@ public class HomeFragment extends Fragment {
         scroll = null;
         search = null;
         quickRecipes = null;
+        resultsSummary = null;
     }
 }

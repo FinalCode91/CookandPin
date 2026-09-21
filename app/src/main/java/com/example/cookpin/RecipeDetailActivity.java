@@ -19,6 +19,7 @@ import com.example.cookpin.data.PortionScaler;
 import com.example.cookpin.data.RecipeCatalog;
 import com.example.cookpin.data.ShoppingRecipes;
 import com.example.cookpin.ui.common.RecipeImages;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 public class RecipeDetailActivity extends AppCompatActivity {
     private static final String STATE_COOKING = "cooking_mode";
@@ -34,6 +35,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
+        setSupportActionBar(findViewById(R.id.recipeToolbar));
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (view, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             view.setPadding(bars.left, bars.top, bars.right, bars.bottom);
@@ -42,6 +44,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(R.string.recipe_toolbar_title);
         }
 
         RecipeCatalog.Recipe recipe = RecipeCatalog.find(getIntent().getStringExtra("recipeId"));
@@ -165,6 +168,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
         cookingMode.setVisibility(visible ? View.VISIBLE : View.GONE);
         cookingMode.setKeepScreenOn(visible);
         cookingBack.setEnabled(visible);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(visible
+                    ? R.string.cooking_toolbar_title : R.string.recipe_toolbar_title);
+        }
         if (visible) {
             renderCookingStep();
             findViewById(R.id.cookingStepCounter).requestFocus();
@@ -177,9 +184,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 R.string.cooking_step_count, cookingStep + 1, cookingSteps.length));
         ((TextView) findViewById(R.id.cookingStepText)).setText(
                 cookingSteps[cookingStep].trim().replaceFirst("^\\d+\\.\\s*", ""));
+        LinearProgressIndicator progress = findViewById(R.id.cookingProgress);
+        progress.setMax(cookingSteps.length);
+        progress.setProgressCompat(cookingStep + 1, true);
         findViewById(R.id.previousCookingStep).setEnabled(cookingStep > 0);
         findViewById(R.id.nextCookingStep).setEnabled(cookingStep < cookingSteps.length - 1);
-        ((android.widget.ScrollView) cookingMode).smoothScrollTo(0, 0);
+        findViewById(R.id.cookingStepCounter).announceForAccessibility(getString(
+                R.string.cooking_step_count, cookingStep + 1, cookingSteps.length));
     }
 
     @Override

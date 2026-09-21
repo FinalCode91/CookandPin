@@ -42,6 +42,9 @@ public class DashboardFragment extends Fragment {
             TextView empty = new TextView(requireContext());
             empty.setText(R.string.no_pins);
             empty.setTextSize(18);
+            empty.setTextColor(requireContext().getColor(R.color.on_surface_variant));
+            empty.setGravity(android.view.Gravity.CENTER);
+            empty.setPadding(24, 72, 24, 24);
             results.addView(empty);
         }
     }

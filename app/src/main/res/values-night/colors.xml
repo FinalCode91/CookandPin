@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_brown">#D78862</color>
+    <color name="brand_brown_dark">#281710</color>
+    <color name="brand_cream">#33251E</color>
+    <color name="brand_green">#9DC99D</color>
+    <color name="brand_green_light">#304630</color>
+    <color name="app_background">#171311</color>
+    <color name="surface">#211B18</color>
+    <color name="surface_variant">#342720</color>
+    <color name="on_surface">#F4EDE8</color>
+    <color name="on_surface_variant">#CFC1B8</color>
+    <color name="outline">#6C5A50</color>
+    <color name="divider">#3C302A</color>
+    <color name="success_surface">#243724</color>
+    <color name="disabled_surface">#3B3430</color>
+    <color name="disabled_text">#A59A94</color>
+</resources>

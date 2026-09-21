@@ -2,25 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingStart="@dimen/space_16"
+    android:paddingTop="@dimen/space_16"
+    android:paddingEnd="@dimen/space_16">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/discover_intro"
+        android:textAppearance="@style/TextAppearance.CookPin.ScreenIntro" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        android:text="@string/discover_supporting"
+        android:textAppearance="@style/TextAppearance.CookPin.Meta" />
+
     <EditText
         android:id="@+id/recipeSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginTop="@dimen/space_16"
+        android:background="@drawable/bg_search"
         android:hint="@string/search_recipes"
+        android:imeOptions="actionSearch"
         android:inputType="text"
-        android:singleLine="true" />
-    <CheckBox
+        android:singleLine="true"
+        android:textColor="@color/on_surface"
+        android:textColorHint="@color/on_surface_variant"
+        android:textSize="16sp" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/quickRecipes"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/touch_target"
+        android:layout_marginTop="@dimen/space_8"
+        android:buttonTint="@color/bottom_nav_tint"
+        android:text="@string/quick_recipes"
+        android:textColor="@color/on_surface" />
+
+    <TextView
+        android:id="@+id/resultsSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/quick_recipes" />
+        android:layout_marginTop="@dimen/space_8"
+        android:layout_marginBottom="@dimen/space_8"
+        android:textAppearance="@style/TextAppearance.CookPin.Meta" />
+
     <ScrollView
         android:id="@+id/discoverScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/space_16"
+        android:scrollbars="none">
+
         <LinearLayout
             android:id="@+id/recipeResults"
             android:layout_width="match_parent"

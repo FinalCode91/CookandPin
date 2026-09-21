@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="brand_brown">#8A3E22</color>
-    <color name="brand_brown_dark">#63301C</color>
-    <color name="brand_cream">#FFF4E3</color>
+    <color name="brand_brown_dark">#5E2A19</color>
+    <color name="brand_cream">#FFF7EC</color>
     <color name="brand_green">#426A43</color>
-    <color name="brand_green_light">#B6D5AE</color>
+    <color name="brand_green_light">#DCEAD8</color>
+    <color name="app_background">#FFFBF7</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="surface_variant">#F6EDE5</color>
+    <color name="on_surface">#2C211D</color>
+    <color name="on_surface_variant">#6E605A</color>
+    <color name="outline">#D8C8BC</color>
+    <color name="divider">#EDE2D9</color>
+    <color name="success_surface">#EDF5EA</color>
+    <color name="disabled_surface">#E8E2DE</color>
+    <color name="disabled_text">#8B817C</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

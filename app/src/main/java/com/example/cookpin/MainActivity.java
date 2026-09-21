@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         ShoppingRecipes.initialize(this);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.topAppBar);
         ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             view.setPadding(bars.left, bars.top, bars.right, bars.bottom);
