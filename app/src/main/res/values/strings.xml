@@ -57,7 +57,7 @@
     <string name="close_cooking">Exit cooking mode</string>
     <string name="recipe_toolbar_title">Recipe</string>
     <string name="cooking_toolbar_title">Cooking mode</string>
-    <string name="previous_step">Previous step</string>
+    <string name="previous_step">Back</string>
     <string name="next_step">Next step</string>
     <string name="cooking_step_count">Step %1$d of %2$d</string>
     <string name="portion_summary">About %1$d portions · %2$s</string>
