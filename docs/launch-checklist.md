@@ -5,6 +5,7 @@ Target: Google Play testing, then production. Treat the first Play upload packag
 ## Week 1 — first installable test
 
 - [ ] Confirm the Play package name, app ownership and usage rights for the nine recipe photos and launcher art.
+- [ ] Sign in to [Play Console](https://play.google.com/console/) to check whether a developer account already exists. If it does not, register this week: Google lists a US$25 one-time fee and developer identity verification; new personal accounts also require Android device verification. Leave time to finish these steps before the closed test.
 - [ ] Wait for the Android checks workflow on the pull request to pass: unit tests, lint, debug APK, and release bundle.
 - [ ] Check that the API 23 and API 36 emulator smoke jobs pass. They repeatedly search, navigate between tabs, and recreate the app activity. These checks run for each pull request but cannot replace physical phone testing.
 - [ ] Build and run on a real phone with Android 16/API 36 and one older Android phone (Android 6+/API 23 if available). Check light and dark themes, large font, and screen rotation.
@@ -32,7 +33,7 @@ Ask each tester: device model, Android version, app version, exact steps, expect
 | Scenario | Automated coverage | Real-device check before release |
 | --- | --- | --- |
 | Rapid search and tab switching | Emulator: eight cycles of matching and unmatched searches across all tabs on API 23 and API 36 | Repeat on a small or slower phone; rapidly pin and unpin different recipes while searching, then inspect My Pins and Shopping List |
-| Portion and shopping changes | Unit tests check portion calculations | Change batch size repeatedly, tick shopping items, switch recipes, close and reopen; check that quantities and checkmarks match the selected batches |
+| Portion and shopping changes | Unit tests check portion calculations; emulator pins Pizza, halves and doubles it, checks shopping reset and activity recreation, then unpins it | Change batch size repeatedly, tick shopping items, switch recipes, close and reopen; check that quantities and checkmarks match the selected batches |
 | Activity and process recovery | Emulator recreates the main activity | Rotate on each tab and a detail page; background the app, force-stop it, then reopen it and verify saved pins, portions, and shopping checks |
 | Older and constrained device | Emulator runs API 23 with default resources | Try the oldest available phone, low storage or memory pressure, and a slow connection; look for crashes, clipped controls, and delayed taps |
 | Install and upgrade | CI assembles the APK and bundle | Install a signed test build, save data, install a higher `versionCode` through Play on top, and verify preferences survive |
@@ -50,4 +51,4 @@ Record every failed step with the app version and device details. Resolve any da
 - [ ] If the closed-test rule applies, apply for production access after the continuous 14-day requirement. Allow time for review; approval is not automatic.
 - [ ] Generate a signed release bundle, increment `versionCode` for every later Play upload, inspect the final listing, and submit only after the checks above.
 
-Sources: [Google Play target API requirements](https://support.google.com/googleplay/android-developer/answer/11926878), [closed testing requirements](https://support.google.com/googleplay/android-developer/answer/14151465), [Android app signing](https://developer.android.com/studio/publish/app-signing).
+Sources: [Play Console account setup](https://support.google.com/googleplay/android-developer/answer/6112435), [Google Play target API requirements](https://support.google.com/googleplay/android-developer/answer/11926878), [closed testing requirements](https://support.google.com/googleplay/android-developer/answer/14151465), [Android app signing](https://developer.android.com/studio/publish/app-signing).
