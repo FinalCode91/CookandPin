@@ -44,7 +44,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/brand_brown</item>
+        <item name="android:textColor">@color/brand_primary_text</item>
         <item name="strokeColor">@color/outline</item>
         <item name="cornerRadius">@dimen/radius_small</item>
     </style>
@@ -52,14 +52,18 @@
     <style name="Widget.CookPin.Button.Tonal" parent="Widget.MaterialComponents.Button">
         <item name="android:minHeight">48dp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/brand_brown_dark</item>
-        <item name="backgroundTint">@color/surface_variant</item>
+        <item name="android:textColor">@color/on_tonal</item>
+        <item name="backgroundTint">@color/brand_green_light</item>
         <item name="cornerRadius">@dimen/radius_small</item>
     </style>
 
     <style name="Widget.CookPin.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:minHeight">@dimen/touch_target</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/brand_brown</item>
+        <item name="android:textColor">@color/brand_primary_text</item>
+    </style>
+
+    <style name="Widget.CookPin.Button.Pin" parent="Widget.CookPin.Button.Text">
+        <item name="android:textColor">@color/brand_accent</item>
     </style>
 </resources>

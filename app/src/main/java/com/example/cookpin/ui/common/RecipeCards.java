@@ -73,7 +73,7 @@ public final class RecipeCards {
         pin.setCornerRadius((int) (12 * density));
         pin.setStrokeWidth((int) density);
         pin.setStrokeColor(ColorStateList.valueOf(context.getColor(R.color.outline)));
-        pin.setTextColor(context.getColor(R.color.brand_brown));
+        pin.setTextColor(context.getColor(R.color.brand_accent));
         updatePin(context, pin, recipe);
         pin.setOnClickListener(v -> {
             PinnedRecipes.setPinned(context, recipe.id, !PinnedRecipes.contains(context, recipe.id));
@@ -99,7 +99,7 @@ public final class RecipeCards {
         boolean pinned = PinnedRecipes.contains(context, recipe.id);
         pin.setText(pinned ? R.string.unpin_short : R.string.pin_short);
         pin.setBackgroundTintList(ColorStateList.valueOf(context.getColor(
-                pinned ? R.color.surface_variant : R.color.surface)));
+                pinned ? R.color.brand_accent_light : R.color.surface)));
         pin.setContentDescription(context.getString(
                 pinned ? R.string.unpin_named_recipe : R.string.pin_named_recipe, recipe.title));
     }

@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/brand_brown"
-        app:navigationIconTint="@color/white"
-        app:titleTextColor="@color/white" />
+        app:navigationIconTint="@color/on_primary"
+        app:titleTextColor="@color/on_primary" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/pinRecipe"
-                    style="@style/Widget.CookPin.Button.Text"
+                    style="@style/Widget.CookPin.Button.Pin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_4"
@@ -245,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_20"
                 android:accessibilityHeading="true"
-                android:textColor="@color/brand_brown"
+                android:textColor="@color/brand_primary_text"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

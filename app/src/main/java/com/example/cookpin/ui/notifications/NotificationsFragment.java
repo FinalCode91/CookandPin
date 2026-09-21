@@ -198,7 +198,7 @@ public class NotificationsFragment extends Fragment {
                 requireContext(), null, com.google.android.material.R.attr.materialButtonStyle);
         button.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
                 requireContext().getColor(R.color.surface_variant)));
-        button.setTextColor(requireContext().getColor(R.color.brand_brown));
+        button.setTextColor(requireContext().getColor(R.color.brand_accent));
         button.setCornerRadius(dp(10));
         button.setInsetTop(0);
         button.setInsetBottom(0);
