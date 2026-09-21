@@ -41,7 +41,9 @@ public class NotificationsFragment extends Fragment {
         textNotifications.setOnClickListener(view ->
                 {
                     Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
-                    intent.putExtra("recipeName", "Pizza");
+                    intent.putExtra("recipeTitle", "Pizza");
+                    intent.putExtra("recipeIngredients", "Flour, Water, Yeast, Tomato Sauce, Cheese");
+                    intent.putExtra("recipeInstructions", "Mix flour, water, and yeast; roll the dough, then bake with toppings at 375 degrees for 20-25 minutes.");
                     startActivity(intent);
                 });
 
