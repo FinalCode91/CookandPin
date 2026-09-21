@@ -42,6 +42,13 @@
             android:layout_marginTop="16dp"
             android:text="@string/pin_recipe" />
 
+        <Button
+            android:id="@+id/shoppingRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/add_to_shopping" />
+
         <LinearLayout
             android:id="@+id/portionControls"
             android:layout_width="match_parent"

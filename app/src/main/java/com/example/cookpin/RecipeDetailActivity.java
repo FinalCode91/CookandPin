@@ -13,6 +13,7 @@ import com.example.cookpin.data.PinnedRecipes;
 import com.example.cookpin.data.PortionPreferences;
 import com.example.cookpin.data.PortionScaler;
 import com.example.cookpin.data.RecipeCatalog;
+import com.example.cookpin.data.ShoppingRecipes;
 import com.example.cookpin.ui.common.RecipeImages;
 
 public class RecipeDetailActivity extends AppCompatActivity {
@@ -47,6 +48,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         ImageView photo = findViewById(R.id.recipePhoto);
         Button pin = findViewById(R.id.pinRecipe);
+        Button shopping = findViewById(R.id.shoppingRecipe);
         View portionControls = findViewById(R.id.portionControls);
         if (recipe != null) {
             photo.setImageBitmap(RecipeImages.get(getResources(), recipe.image));
@@ -55,6 +57,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
             pin.setOnClickListener(v -> {
                 PinnedRecipes.setPinned(this, recipe.id, !PinnedRecipes.contains(this, recipe.id));
                 updatePinButton(pin, recipe.id);
+            });
+            updateShoppingButton(shopping, recipe.id);
+            shopping.setOnClickListener(v -> {
+                ShoppingRecipes.setSelected(this, recipe.id, !ShoppingRecipes.contains(this, recipe.id));
+                updateShoppingButton(shopping, recipe.id);
             });
             Button decrease = findViewById(R.id.decreasePortions);
             Button increase = findViewById(R.id.increasePortions);
@@ -71,13 +78,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
             };
             decrease.setOnClickListener(v -> {
                 PortionPreferences.set(this, recipe, PortionPreferences.get(this, recipe.id) - 1);
-                if (PinnedRecipes.contains(this, recipe.id))
+                if (ShoppingRecipes.contains(this, recipe.id))
                     android.widget.Toast.makeText(this, R.string.shopping_reset, android.widget.Toast.LENGTH_SHORT).show();
                 refresh.run();
             });
             increase.setOnClickListener(v -> {
                 PortionPreferences.set(this, recipe, PortionPreferences.get(this, recipe.id) + 1);
-                if (PinnedRecipes.contains(this, recipe.id))
+                if (ShoppingRecipes.contains(this, recipe.id))
                     android.widget.Toast.makeText(this, R.string.shopping_reset, android.widget.Toast.LENGTH_SHORT).show();
                 refresh.run();
             });
@@ -85,6 +92,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         } else {
             photo.setVisibility(View.GONE);
             pin.setVisibility(View.GONE);
+            shopping.setVisibility(View.GONE);
             portionControls.setVisibility(View.GONE);
             findViewById(R.id.portionNote).setVisibility(View.GONE);
         }
@@ -92,6 +100,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
     private void updatePinButton(Button button, String id) {
         button.setText(PinnedRecipes.contains(this, id) ? R.string.unpin_recipe : R.string.pin_recipe);
+    }
+
+    private void updateShoppingButton(Button button, String id) {
+        button.setText(ShoppingRecipes.contains(this, id)
+                ? R.string.remove_from_shopping : R.string.add_to_shopping);
     }
 
     @Override

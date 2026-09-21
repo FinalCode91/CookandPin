@@ -20,6 +20,7 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import java.util.Collections;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,9 +52,10 @@ public class MainActivitySmokeTest {
         onView(withText(R.string.recipe1_description)).check(matches(isDisplayed()));
     }
 
-    @Test public void pinScaleAndShoppingCheckPersistAcrossActivityRecreation() {
+    @Test public void pinAndShoppingSelectionSurvivePortionChangesAndRecreation() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        for (String name : new String[] {"cookandpin_pins", "cookandpin_portions", "cookandpin_shopping"}) {
+        for (String name : new String[] {"cookandpin_pins", "cookandpin_portions",
+                "cookandpin_shopping", "cookandpin_shopping_recipes"}) {
             context.getSharedPreferences(name, Context.MODE_PRIVATE).edit().clear().commit();
         }
         activity.getScenario().recreate();
@@ -61,6 +63,14 @@ public class MainActivitySmokeTest {
         onView(withContentDescription("Pin Pizza")).perform(click());
         onView(withId(R.id.navigation_dashboard)).perform(click());
         onView(withContentDescription(startsWith("Open Pizza recipe"))).check(matches(isDisplayed()));
+        onView(withId(R.id.navigation_notifications)).perform(click());
+        onView(withText(R.string.no_shopping_items)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.navigation_home)).perform(click());
+        onView(withContentDescription(startsWith("Open Pizza recipe"))).perform(click());
+        onView(withId(R.id.shoppingRecipe)).perform(scrollTo(), click());
+        onView(withId(R.id.shoppingRecipe)).check(matches(withText(R.string.remove_from_shopping)));
+        pressBack();
         onView(withId(R.id.navigation_notifications)).perform(click());
         onView(withText("2 1/2 cups all-purpose flour")).perform(click());
         onView(withText("2 1/2 cups all-purpose flour")).check(matches(isChecked()));
@@ -82,6 +92,31 @@ public class MainActivitySmokeTest {
         onView(withId(R.id.navigation_dashboard)).perform(click());
         onView(withContentDescription("Unpin Pizza")).perform(click());
         onView(withId(R.id.navigation_notifications)).perform(click());
+        onView(withText("5 cups all-purpose flour")).check(matches(isChecked()));
+        onView(withContentDescription("Remove Pizza from shopping list")).perform(click());
         onView(withText(R.string.no_shopping_items)).check(matches(isDisplayed()));
+        onView(withId(R.id.navigation_home)).perform(click());
+        onView(withContentDescription(startsWith("Open Pizza recipe"))).perform(click());
+        onView(withId(R.id.shoppingRecipe)).perform(scrollTo(), click());
+        pressBack();
+        onView(withId(R.id.navigation_notifications)).perform(click());
+        onView(withText("5 cups all-purpose flour")).check(matches(isNotChecked()));
+    }
+
+    @Test public void existingPinnedRecipesMigrateToShoppingOnUpgrade() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        context.getSharedPreferences("cookandpin_portions", Context.MODE_PRIVATE)
+                .edit().clear().commit();
+        context.getSharedPreferences("cookandpin_shopping", Context.MODE_PRIVATE)
+                .edit().clear().commit();
+        context.getSharedPreferences("cookandpin_shopping_recipes", Context.MODE_PRIVATE)
+                .edit().clear().commit();
+        context.getSharedPreferences("cookandpin_pins", Context.MODE_PRIVATE)
+                .edit().putStringSet("recipe_ids", Collections.singleton("recipe1")).commit();
+
+        // A fresh MainActivity run performs the one-time migration for existing installs.
+        activity.getScenario().recreate();
+        onView(withId(R.id.navigation_notifications)).perform(click());
+        onView(withText("2 1/2 cups all-purpose flour")).check(matches(isNotChecked()));
     }
 }

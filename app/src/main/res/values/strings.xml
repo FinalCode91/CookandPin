@@ -1,6 +1,6 @@
 <resources>
     <string name="appName">Cook &amp; Pin</string>
-    <string name="saying">Find recipes, pin your favorites, and make a shopping list.</string>
+    <string name="saying">Find recipes, save favorites, and choose what to shop for.</string>
     <string name="title_home">Discover</string>
     <string name="title_dashboard">My Pins</string>
     <string name="title_notifications">Shopping List</string>
@@ -16,7 +16,10 @@
     <string name="search_recipes">Search recipes or ingredients</string>
     <string name="no_search_results">No recipes found. Try another ingredient.</string>
     <string name="no_pins">No pinned recipes yet. Open a recipe in Discover to save it here.</string>
-    <string name="no_shopping_items">Pin a recipe to create your shopping list.</string>
+    <string name="no_shopping_items">Open a recipe and add it to your shopping list.</string>
+    <string name="add_to_shopping">Add ingredients to shopping list</string>
+    <string name="remove_from_shopping">Remove ingredients from shopping list</string>
+    <string name="remove_from_list_named">Remove %1$s from shopping list</string>
     <string name="pin_recipe">Pin recipe</string>
     <string name="unpin_recipe">Unpin recipe</string>
     <string name="recipe_photo">Recipe photo</string>

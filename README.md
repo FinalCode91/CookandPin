@@ -1,6 +1,6 @@
 # Cook & Pin
 
-An offline Android cookbook with nine built-in recipes. Discover recipes by name or ingredient, pin favorites, and check off ingredients in a shopping list grouped by recipe. Pins and checkmarks are stored on the device.
+An offline Android cookbook with nine built-in recipes. Discover recipes by name or ingredient, pin favorites, choose recipes for a shopping list, and check off ingredients grouped by recipe. Pins, shopping selections, and checkmarks are stored on the device.
 
 ## Open and build
 
@@ -14,6 +14,6 @@ For release and tester tasks, see [launch checks](docs/launch-checklist.md).
 
 - **Discover:** scroll or search recipes by name and ingredient; tap a card to see details or tap Pin. On a detail page, use + or − to choose half, original, one-and-a-half, or double batch sizes. The estimated portions and ingredient amounts update and are remembered for each recipe.
 - **My Pins:** see saved recipes and remove them with Unpin.
-- **Shopping List:** view each pinned recipe's adjusted ingredients and check off items. Changing its batch size or removing its pin clears that recipe's checkmarks.
+- **Shopping List:** open a recipe and add its ingredients, even if it is not pinned. Check off items or remove the recipe from the list. Changing its batch size or removing it from Shopping List resets that recipe's checkmarks; pinning or unpinning does not change its shopping selection. On upgrade from earlier builds, existing pins are added to Shopping List once to preserve the old list.
 
-Recipes are included in the app; there is no account, sync, recipe editor, or online feed. Times and portions are estimates; changing batch size adjusts ingredient amounts but not cooking steps, pan sizes, or cooking times. The shopping list groups items by recipe rather than adding quantities across recipes. The original recipe collection was expanded with quantities and complete directions; the pumpkin pie baking sequence follows [LIBBY'S pie guidance](https://www.verybestbaking.com/libbys/recipes/libby-s-famous-pumpkin-pie/) and meat temperature checks follow [USDA guidance](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart).
+Recipes are included in the app; there is no account, sync, recipe editor, or online feed. Times and portions are estimates; changing batch size adjusts ingredient amounts, while baking times still require checking doneness. The shopping list groups items by recipe rather than adding quantities across recipes. The original recipe collection was expanded with quantities and complete directions; the pumpkin pie baking sequence follows [LIBBY'S pie guidance](https://www.verybestbaking.com/libbys/recipes/libby-s-famous-pumpkin-pie/) and meat temperature checks follow [USDA guidance](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart).

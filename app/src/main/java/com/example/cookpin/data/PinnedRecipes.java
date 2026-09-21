@@ -18,18 +18,7 @@ public final class PinnedRecipes {
         SharedPreferences preferences = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         Set<String> ids = new HashSet<>(preferences.getStringSet(IDS, java.util.Collections.emptySet()));
         if (pinned) ids.add(id);
-        else {
-            ids.remove(id);
-            RecipeCatalog.Recipe recipe = RecipeCatalog.find(id);
-            if (recipe != null) {
-                SharedPreferences.Editor shopping = context.getSharedPreferences(
-                        "cookandpin_shopping", Context.MODE_PRIVATE).edit();
-                for (String ingredient : recipe.ingredients.split("\n")) {
-                    shopping.remove(id + ":" + ingredient);
-                }
-                shopping.apply();
-            }
-        }
+        else ids.remove(id);
         preferences.edit().putStringSet(IDS, ids).apply();
     }
 

@@ -4,10 +4,12 @@
         <include domain="sharedpref" path="cookandpin_pins.xml" />
         <include domain="sharedpref" path="cookandpin_portions.xml" />
         <include domain="sharedpref" path="cookandpin_shopping.xml" />
+        <include domain="sharedpref" path="cookandpin_shopping_recipes.xml" />
     </cloud-backup>
     <device-transfer>
         <include domain="sharedpref" path="cookandpin_pins.xml" />
         <include domain="sharedpref" path="cookandpin_portions.xml" />
         <include domain="sharedpref" path="cookandpin_shopping.xml" />
+        <include domain="sharedpref" path="cookandpin_shopping_recipes.xml" />
     </device-transfer>
 </data-extraction-rules>
