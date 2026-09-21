@@ -12,15 +12,16 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertTrue;
 
 import android.graphics.Bitmap;
+import android.content.ContentValues;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
+import android.provider.MediaStore;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,13 +61,19 @@ public class DemoScreenshotsTest {
     }
 
     private static void capture(String name) throws IOException {
-        File parent = new File(InstrumentationRegistry.getInstrumentation().getTargetContext()
-                .getExternalFilesDir(Environment.DIRECTORY_PICTURES), "demo");
-        assertTrue(parent.exists() || parent.mkdirs());
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, name);
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+        values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CookandPinDemo");
+        Uri uri = context.getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        assertTrue("Could not create: " + name, uri != null);
         Bitmap bitmap = InstrumentationRegistry.getInstrumentation()
                 .getUiAutomation().takeScreenshot();
         assertTrue("Screenshot unavailable: " + name, bitmap != null);
-        try (FileOutputStream output = new FileOutputStream(new File(parent, name))) {
+        try (OutputStream output = context.getContentResolver().openOutputStream(uri)) {
+            assertTrue("Could not open: " + name, output != null);
             assertTrue("Could not save: " + name, bitmap.compress(Bitmap.CompressFormat.PNG, 100, output));
         } finally {
             bitmap.recycle();

@@ -5,5 +5,5 @@ set -euo pipefail
 
 if [[ "${DEMO_API_LEVEL}" == "36" ]]; then
   mkdir -p app/build/demo-screens
-  adb pull /sdcard/Android/data/com.finalcode91.cookandpin/files/Pictures/demo/. app/build/demo-screens/
+  adb pull /sdcard/Pictures/CookandPinDemo/. app/build/demo-screens/
 fi
