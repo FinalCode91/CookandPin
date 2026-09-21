@@ -26,5 +26,14 @@
     <string name="unpin_short">Unpin</string>
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
+    <string name="portion_summary">About %1$d portions · %2$s</string>
+    <string name="half_batch">half batch</string>
+    <string name="original_batch">original batch</string>
+    <string name="one_and_half_batch">1½ batches</string>
+    <string name="double_batch">double batch</string>
+    <string name="decrease_portions">Decrease portions</string>
+    <string name="increase_portions">Increase portions</string>
+    <string name="portion_note">Amounts are estimates. Adjust the pan and check doneness when changing batch size. Beat an egg before using part of it.</string>
+    <string name="shopping_recipe_heading">%1$s · about %2$d portions</string>
     <string name="recipe_unavailable">Recipe unavailable</string>
 </resources>

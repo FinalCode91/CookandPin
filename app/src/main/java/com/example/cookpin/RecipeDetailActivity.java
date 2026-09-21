@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.example.cookpin.data.PinnedRecipes;
+import com.example.cookpin.data.PortionPreferences;
+import com.example.cookpin.data.PortionScaler;
 import com.example.cookpin.data.RecipeCatalog;
 
 public class RecipeDetailActivity extends AppCompatActivity {
@@ -37,13 +39,14 @@ public class RecipeDetailActivity extends AppCompatActivity {
         TextView time = findViewById(R.id.recipeTime);
         if (recipe == null) time.setVisibility(View.GONE);
         else time.setText(getString(R.string.estimated_time, recipe.minutes));
-        ((TextView) findViewById(R.id.recipeIngredientsList)).setText(
-                ingredients == null ? "" : ingredients);
+        TextView ingredientList = findViewById(R.id.recipeIngredientsList);
+        ingredientList.setText(ingredients == null ? "" : ingredients);
         ((TextView) findViewById(R.id.recipeInstructionsList)).setText(
                 instructions == null ? "" : instructions);
 
         ImageView photo = findViewById(R.id.recipePhoto);
         Button pin = findViewById(R.id.pinRecipe);
+        View portionControls = findViewById(R.id.portionControls);
         if (recipe != null) {
             photo.setImageResource(recipe.image);
             photo.setContentDescription(recipe.title);
@@ -52,9 +55,32 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 PinnedRecipes.setPinned(this, recipe.id, !PinnedRecipes.contains(this, recipe.id));
                 updatePinButton(pin, recipe.id);
             });
+            Button decrease = findViewById(R.id.decreasePortions);
+            Button increase = findViewById(R.id.increasePortions);
+            Runnable refresh = () -> {
+                int scale = PortionPreferences.get(this, recipe.id);
+                String[] labels = {getString(R.string.half_batch), getString(R.string.original_batch),
+                        getString(R.string.one_and_half_batch), getString(R.string.double_batch)};
+                ((TextView) findViewById(R.id.portionSummary)).setText(getString(
+                        R.string.portion_summary, PortionScaler.servings(recipe, scale), labels[scale]));
+                ingredientList.setText(PortionScaler.ingredients(recipe, scale));
+                decrease.setEnabled(scale > 0);
+                increase.setEnabled(scale < 3);
+            };
+            decrease.setOnClickListener(v -> {
+                PortionPreferences.set(this, recipe, PortionPreferences.get(this, recipe.id) - 1);
+                refresh.run();
+            });
+            increase.setOnClickListener(v -> {
+                PortionPreferences.set(this, recipe, PortionPreferences.get(this, recipe.id) + 1);
+                refresh.run();
+            });
+            refresh.run();
         } else {
             photo.setVisibility(View.GONE);
             pin.setVisibility(View.GONE);
+            portionControls.setVisibility(View.GONE);
+            findViewById(R.id.portionNote).setVisibility(View.GONE);
         }
     }
 

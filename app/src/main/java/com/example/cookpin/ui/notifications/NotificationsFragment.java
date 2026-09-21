@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.cookpin.R;
 import com.example.cookpin.data.PinnedRecipes;
+import com.example.cookpin.data.PortionPreferences;
+import com.example.cookpin.data.PortionScaler;
 import com.example.cookpin.data.RecipeCatalog;
 
 public class NotificationsFragment extends Fragment {
@@ -36,14 +38,16 @@ public class NotificationsFragment extends Fragment {
             if (!PinnedRecipes.contains(requireContext(), recipe.id)) continue;
             recipeCount++;
             TextView heading = new TextView(requireContext());
-            heading.setText(recipe.title);
+            heading.setText(getString(R.string.shopping_recipe_heading, recipe.title,
+                    PortionScaler.servings(recipe, PortionPreferences.get(requireContext(), recipe.id))));
             heading.setTextSize(20);
             heading.setPadding(0, 18, 0, 8);
             items.addView(heading);
             for (String ingredient : recipe.ingredients.split("\n")) {
                 String key = recipe.id + ":" + ingredient;
                 CheckBox box = new CheckBox(requireContext());
-                box.setText(ingredient);
+                box.setText(PortionScaler.ingredient(ingredient,
+                        PortionPreferences.get(requireContext(), recipe.id)));
                 box.setTextSize(17);
                 box.setPadding(0, 4, 0, 4);
                 box.setChecked(checked.getBoolean(key, false));

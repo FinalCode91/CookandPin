@@ -41,6 +41,45 @@
             android:layout_marginTop="16dp"
             android:text="@string/pin_recipe" />
 
+        <LinearLayout
+            android:id="@+id/portionControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/decreasePortions"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/decrease_portions"
+                android:text="−" />
+
+            <TextView
+                android:id="@+id/portionSummary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/increasePortions"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/increase_portions"
+                android:text="+" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/portionNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/portion_note"
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/recipeIngredients"
             android:layout_width="match_parent"
