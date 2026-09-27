@@ -1,0 +1,131 @@
+[
+  {
+    "id": "1",
+    "title": "Pizza",
+    "ingredients": [
+      "Flour",
+      "Water",
+      "Yeast",
+      "Tomato Sauce",
+      "Cheese"
+    ],
+    "instructions": "Mix flour, water, and yeast.. roll the dough, bake with toppings at 375 degrees for 20-25 minutes."
+  },
+  {
+    "id": "2",
+    "title": "Chocolate Cake",
+    "ingredients": [
+      "Sugar",
+      "Cocoa Powder",
+      "Baking Soda",
+      "Baking Powder",
+      "Salt",
+      "Flour",
+      "Buttermilk",
+      "Hot Water",
+      "Oil",
+      "Eggs",
+      "Vanilla Extract"
+    ],
+    "instructions": "Whisk dry ingredients into a large bowl, stir together wet ingredients in another bowl, and now add them together and whisk until batter forms without lumps. Pour into a cake pan at 350 degrees for 30-35 minutes."
+  },
+  {
+    "id": "3",
+    "title": "Potato Soup",
+    "ingredients": [
+      "Diced Onions",
+      "Butter",
+      "Russet Potatoes",
+      "Heavy Cream"
+    ],
+    "instructions": "Saute onions: In a large pot, add the butter over medium heat, then add in onions until they're tender. Boil the potatoes: add the potatoes into the pot with water, bring to a boil and reduce to simmer for 15-20 minutes until the potatoes are tender. Drain the water. Add the onions, cream and remaining butter to the pot. Gently mash the potatoes, cook for 5 minutes and it's ready to serve."
+  },
+  {
+    "id": "4",
+    "title": "Chicken Enchiladas",
+    "ingredients": [
+      "Tortillas",
+      "Enchilada Sauce",
+      "Shredded Chicken",
+      "Shredded Cheese"
+    ],
+    "instructions": "Preheat oven to 350 degrees. In a large bowl, combine shredded chicken with 1/4 cup of enchilada sauce. Warm the tortillas in the microwave for 1 minute, flipping them half way through. Assemble the enchiladas, roll them tightly, and place them into a large baking dish. Pour the remaining sauce over them and top with cheese. Bake for 20 minutes."
+  },
+  {
+    "id": "5",
+    "title": "Chocolate Chip Cookies",
+    "ingredients": [
+      "Butter",
+      "Brown Sugar",
+      "Sugar",
+      "Flour",
+      "Baking Soda",
+      "Salt",
+      "Chocolate Chips"
+    ],
+    "instructions": "Preheat the oven to 350 degrees. Beat the butter with brown and white sugar until creamy and pale in color. Add the flour, baking soda, and salt, mixing until combined. Fold in chocolate chips. Scoop out 15-20 balls and arrange them on a lined baking sheet with parchment paper. Bake for about 10 minutes. "
+  },
+  {
+    "id": "6",
+    "title": "Stir Fry",
+    "ingredients": [
+      "Olive Oil",
+      "Red Bell Pepper",
+      "Yellow Bell Pepper",
+      "Sugar Snap Peas",
+      "Carrots",
+      "Mushrooms",
+      "Broccoli",
+      "Baby Corn",
+      "Water Chestnuts",
+      "Soy Sauce",
+      "Garlic Cloves",
+      "Brown Sugar",
+      "Sesame Oil",
+      "Chicken Broth",
+      "Cornstarch"
+    ],
+    "instructions": "In a wok, add 1 tbsp of olive oil over medium-high heat. Add in your vegetables and saute for about 2-3 minutes until veggies are tender. In a small bowl, whisk together your sauces, brown sugar and cornstarch. Pour over the veggies and cook until the sauce has thickened."
+  },
+  {
+    "id": "7",
+    "title": "Cauliflower Casserole",
+    "ingredients": [
+      "Water",
+      "Cauliflower",
+      "Butter",
+      "Parmesan Cheese",
+      "Bread Crumbs",
+      "Salt",
+      "Red Pepper Flakes"
+    ],
+    "instructions": "Preheat oven to 350 degrees. Bring 2 inches of water to a boil in a saucepan. Add cauliflower, cover, and cook for about 10 minutes. In a small bowl, mix together butter, parmesean, bread crumbs, salt and red pepper flakes. Mix everything together and place into a baking dish. Bake for 20 minutes."
+  },
+  {
+    "id": "8",
+    "title": "Pumpkin Pie",
+    "ingredients": [
+      "1 Can of Pumpkin Puree",
+      "1 Can of Sweetened Condensed Milk",
+      "2 Large Eggs",
+      "1 TBSP Pumpkin Pie Spice"
+    ],
+    "instructions": "Preheat the oven to 425 degrees. Mix the pumpkin puree, sweetened condensed milk, eggs and pumpkin pie spice in a large bowl and whisk until combined. Pour the filling into a 9 inch deep pie shell. Bake for 15 minutes"
+  },
+  {
+    "id": "9",
+    "title": "Meatballs",
+    "ingredients": [
+      "Beef",
+      "Breadcrumbs",
+      "Milk",
+      "Onion",
+      "Parsley",
+      "Parmesan",
+      "Cheese",
+      "Egg",
+      "Any Other Seasonings"
+    ],
+    "instructions": "Preheat oven to 400 degrees. In a medium bowl, add beef, breadcrumbs,milk, onion, parsley, parmesan, cheese, egg, and seasonings. Mix them all together. Then, shape the meat mixture into about 48 meatballs and place them on a prepared baking sheet. Bake for 18-20 minutes. Serve with tomato sauce if desired."
+  }
+]
