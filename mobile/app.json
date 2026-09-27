@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "CookandPin",
+    "slug": "cookandpin",
+    "owner": "finalpages-team",
+    "scheme": "cookandpin",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.finalcode91.cookandpin"
+    },
+    "ios": {
+      "bundleIdentifier": "com.finalcode91.cookandpin"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d2d537b5-234a-44af-aade-19a1c37c71a6"
+      }
+    }
+  }
+}
