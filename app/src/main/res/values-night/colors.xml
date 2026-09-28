@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_brown">#245242</color>
+    <color name="brand_brown_dark">#10382C</color>
+    <color name="brand_cream">#1E2722</color>
+    <color name="brand_green">#8BD3AA</color>
+    <color name="brand_green_light">#31493E</color>
+    <color name="brand_accent">#E7C386</color>
+    <color name="brand_accent_light">#49391D</color>
+    <color name="brand_primary_text">#A8D5BF</color>
+    <color name="on_tonal">#D0EFE0</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="on_accent">#3E2C0D</color>
+    <color name="app_background">#111714</color>
+    <color name="surface">#18201C</color>
+    <color name="surface_variant">#27312C</color>
+    <color name="on_surface">#E6ECE7</color>
+    <color name="on_surface_variant">#BFC8C1</color>
+    <color name="outline">#89938C</color>
+    <color name="divider">#303A35</color>
+    <color name="success_surface">#203A2D</color>
+    <color name="disabled_surface">#323A36</color>
+    <color name="disabled_text">#939C96</color>
+</resources>
